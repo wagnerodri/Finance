@@ -1,5 +1,4 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { useState } from 'react'
 
 export function TransferSuccessDialog({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) {
   return (

@@ -1,10 +1,8 @@
-import axios from 'axios'
-import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactNode } from 'react'
 
-const api = axios.create({
-  baseURL: 'https://mockapi.io/api/v1', // Exemplo, pode ser alterado
-})
+import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import type { ReactNode } from 'react'
+
+
 
 export interface Balance {
   amount: number
@@ -12,10 +10,13 @@ export interface Balance {
 
 export function useBalance() {
   // Simula uma requisição de saldo
-  return useQuery<Balance>(['balance'], async () => {
-    // Aqui poderia ser: const { data } = await api.get('/balance')
-    await new Promise(r => setTimeout(r, 500))
-    return { amount: 5000 }
+  return useQuery<Balance>({
+    queryKey: ['balance'],
+    queryFn: async () => {
+      // Aqui poderia ser: const { data } = await api.get('/balance')
+      await new Promise(r => setTimeout(r, 500))
+      return { amount: 5000 }
+    },
   })
 }
 
